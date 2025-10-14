@@ -1,0 +1,44 @@
+
+# Python virtualenv
+venv/
+.venv/
+**/.venv/
+*.pyc
+__pycache__/
+
+# Node / temp
+node_modules/
+dist/
+
+# Large tools & user-provided jars
+burp/*.jar
+**/burp/*.jar
+*.jar
+
+# Reports, exports and databases
+reports/
+*.pdf
+*.html
+*.xml
+*.nmap
+
+# OS/IDE
+.DS_Store
+.vscode/
+.idea/
+thumbs.db
+
+# Credentials, secrets
+*.pem
+*.key
+secrets/
+.env
+
+# OS packages / backups / archives
+*.zip
+*.tar.gz
+*.tar
+*.bak
+
+# Git LFS placeholder (if you ever use it)
+*.gitattributes

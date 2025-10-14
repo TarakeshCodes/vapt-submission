@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+set -euo pipefail
+PROJECT="$HOME/vapt-tool"
+# source venv if exists
+if [ -f "$PROJECT/.venv/bin/activate" ]; then
+  # shellcheck source=/dev/null
+  source "$PROJECT/.venv/bin/activate"
+fi
+start_services(){
+  sudo systemctl start ospd-openvas || true
+  sudo systemctl start gvmd || true
+  sudo systemctl start gsad || true
+  if command -v msfdb >/dev/null 2>&1; then sudo msfdb start || true; fi
+  sudo systemctl start docker 2>/dev/null || true
+  echo "Services started (or attempted)."
+}
+start_gvm_ui(){ echo "Open https://127.0.0.1:9392 in browser"; xdg-open "https://127.0.0.1:9392" >/dev/null 2>&1 || true; }
+start_burp(){
+  if [ -f "$PROJECT/tools/burpsuite_community.jar" ]; then (cd "$PROJECT/tools" && java -jar burpsuite_community.jar &) ;
+  elif command -v burpsuite >/dev/null 2>&1; then burpsuite &>/dev/null &; else echo "Burp not found. Place jar in $PROJECT/tools or install via snap/apt."; fi
+}
+run_demo(){ read -rp "Target IP: " T; "$PROJECT/run_demo.sh" "$T"; }
+run_full_gvm(){ read -rp "Target IP: " T; "$PROJECT/run_full_gvm_pipeline.sh" "$T"; }
+msf_import(){ read -rp "Target IP: " T; msfconsole -q -x "db_import $PROJECT/reports/$T/nmap_quick.xml; hosts; services; exit"; }
+vapt_check(){
+  echo "Python: $(python3 --version 2>/dev/null || echo 'missing')"
+  [ -d "$PROJECT/.venv" ] && echo "venv: ok" || echo "venv: missing"
+  for t in nmap nikto nuclei msfconsole burpsuite; do command -v $t >/dev/null 2>&1 && echo "ok: $t" || echo "missing: $t"; done
+}
+PS3=$'\nChoose: '
+options=("Start services" "Open GVM UI" "Start Burp" "Run demo scans (nmap/nikto/nuclei)" "Import nmap into Metasploit" "Run full GVM pipeline (automated)" "Validation check" "Exit")
+select opt in "${options[@]}"; do
+  case $REPLY in
+    1) start_services;;
+    2) start_gvm_ui;;
+    3) start_burp;;
+    4) run_demo;;
+    5) msf_import;;
+    6) run_full_gvm;;
+    7) vapt_check;;
+    8) echo "Bye"; exit 0;;
+    *) echo "Invalid";;
+  esac
+done

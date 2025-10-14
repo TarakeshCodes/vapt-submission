@@ -1,0 +1,4 @@
+# Nmap 7.98SVN scan initiated Tue Oct 14 03:12:21 2025 as: nmap -sS -sV -T4 -oA /home/tarakesh/vapt-tool/reports/192.168.10.45/nmap_quick 192.168.10.45
+Host: 192.168.10.45 ()	Status: Up
+Host: 192.168.10.45 ()	Ports: 135/open/tcp//msrpc//Microsoft Windows RPC/, 139/open/tcp//netbios-ssn//Microsoft Windows netbios-ssn/, 445/open/tcp//microsoft-ds?///	Ignored State: filtered (997)
+# Nmap done at Tue Oct 14 03:12:33 2025 -- 1 IP address (1 host up) scanned in 12.24 seconds

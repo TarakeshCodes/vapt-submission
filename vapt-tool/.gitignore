@@ -1,0 +1,93 @@
+# ===============================================
+# VAPT-TOOL GITIGNORE
+# ===============================================
+
+# Virtual environments
+.venv/
+env/
+venv/
+ENV/
+__pycache__/
+*.py[cod]
+*.pyo
+
+# System files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# IDE configs
+.vscode/
+.idea/
+*.iml
+
+# Reports & results (keep repo small)
+reports/
+*.nmap
+*.xml
+*.txt
+*.log
+*.pdf
+*.csv
+*.zip
+*.tar
+*.tar.gz
+
+# Burp Suite jars and large binaries
+burpsuite_community.jar
+burpsuite_pro.jar
+*.jar
+
+# Node/npm leftovers (if used)
+node_modules/
+
+# Cache folders
+.cache/
+__pycache__/
+*.pytest_cache/
+
+# Backup or temporary files
+*~
+*.bak
+*.old
+*.tmp
+
+# Git output folders
+*.orig
+*.rej
+
+# Compiled shared libraries
+*.so
+*.dll
+*.dylib
+
+# Python packaging artifacts
+build/
+dist/
+*.egg-info/
+*.egg
+
+# OSINT, pentest, or scan dumps
+output/
+evidence/
+data/
+tmp/
+scratch/
+
+# Submission zips
+vapt-submission-*.zip
+submission-*.zip
+
+# Local scripts or notes
+notes.txt
+todo.txt
+
+# SSH keys / credentials (security!)
+*.pem
+*.key
+*.crt
+*.creds
+*.secret
+*.config
+*.conf

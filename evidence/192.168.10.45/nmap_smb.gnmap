@@ -1,0 +1,4 @@
+# Nmap 7.98SVN scan initiated Tue Oct 14 04:26:22 2025 as: nmap -p 135,139,445 --script smb-os-discovery,smb-enum-shares,smb-enum-users,smb-vuln-ms17-010,smb-vuln-cve2009-3103 -oA /home/tarakesh/vapt-tool/reports/192.168.10.45/nmap_smb 192.168.10.45
+Host: 192.168.10.45 ()	Status: Up
+Host: 192.168.10.45 ()	Ports: 135/open/tcp//msrpc///, 139/open/tcp//netbios-ssn///, 445/open/tcp//microsoft-ds///
+# Nmap done at Tue Oct 14 04:26:35 2025 -- 1 IP address (1 host up) scanned in 12.99 seconds
